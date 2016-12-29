@@ -1,0 +1,20 @@
+{
+  "name": "jet-chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:lipp/jet-chat.git",
+  "author": "Gerhard Preuss",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^1.2.3",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "redux-jet": "github:lipp/redux-jet#add-state-method-creation",
+    "redux-thunk": "^2.1.0"
+  },
+  "scripts": {
+    "start": "now start",
+    "build": "now build",
+    "dev": "now"
+  }
+}
