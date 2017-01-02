@@ -19,9 +19,9 @@ const MessageForm = ({sendMessage}) => (
   </form>
 )
 
-const Footer = ({sendMessage, setName, name}) => (
+const Footer = ({sendMessage, setName, name, me}) => (
   <footer>
-    {name ? null : <NameForm setName={setName} />}
+    {me.id && !me.name ? <NameForm setName={setName} /> : null}
     <MessageForm sendMessage={sendMessage} />
   </footer>
 )

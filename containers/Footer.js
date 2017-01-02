@@ -1,7 +1,6 @@
 import {connect} from 'react-redux'
-import {add, change} from 'redux-jet'
+import {call, change} from 'redux-jet'
 import connection from '../connection'
-import uuid from 'uuid'
 import Footer from '../components/Footer'
 
 const mapStateToProps = state => ({
@@ -10,13 +9,13 @@ const mapStateToProps = state => ({
 })
 
 const actions = {
-  sendMessage: (clientId, text) => add(connection, 'message/#' + uuid.v1(), {postedAt: Date.now(), text, clientId}),
+  sendMessage: (clientId, text, name) => call(connection, 'message/add', [text, clientId, name]),
   setName: (client, name) => change(connection, 'client/#' + client.id, {...client, name})
 }
 
 const mergeProps = (stateProps, dispatchProps) => ({
   ...stateProps,
-  sendMessage: text => dispatchProps.sendMessage(stateProps.me.id, text),
+  sendMessage: text => dispatchProps.sendMessage(stateProps.me.id, text, stateProps.name),
   setName: name => dispatchProps.setName(stateProps.me, name)
 })
 

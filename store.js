@@ -1,3 +1,4 @@
+/* globals localStorage */
 import {createStore, applyMiddleware, combineReducers} from 'redux'
 import {sorted, get, fetch, add, single} from 'redux-jet'
 import thunk from 'redux-thunk'
@@ -29,12 +30,16 @@ export default (initialState) => {
 
   if (initialState) {
     store.resume = () => {
-      const id = uuid.v1()
-      add(connection, 'client/#' + id, {joinedAt: Date.now(), id})(store.dispatch)
+      const id = localStorage.id = localStorage.id || uuid.v1()
+      add(connection, 'client/#' + id, {joinedAt: Date.now(), id, name: localStorage.name})(store.dispatch)
       meQuery.path.equals += id
       fetch(connection, meQuery, 'me')(store.dispatch)
       fetch(connection, clientsQuery, 'clients')(store.dispatch)
       fetch(connection, messagesQuery, 'messages')(store.dispatch)
+      store.subscribe(() => {
+        const state = store.getState()
+        localStorage.name = state.me && state.me.name ? state.me.name : null
+      })
     }
   } else {
     store.getInitialState = () => {
