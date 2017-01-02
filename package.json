@@ -9,12 +9,12 @@
     "next": "^1.2.3",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
-    "redux-jet": "github:lipp/redux-jet#add-state-method-creation",
+    "redux-jet": "^1.3.0",
     "redux-thunk": "^2.1.0"
   },
   "scripts": {
-    "start": "now start",
-    "build": "now build",
-    "dev": "now"
+    "start": "next start",
+    "build": "next build",
+    "dev": "next"
   }
 }

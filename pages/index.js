@@ -2,8 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import {Provider} from 'react-redux'
 import initStore from '../store.js'
-import Todos from '../containers/Todos'
-import AddTodoForm from '../containers/AddTodoForm'
+import Header from '../containers/Header'
+import Messages from '../containers/Messages'
 import Footer from '../containers/Footer'
 
 export default class App extends React.Component {
@@ -28,15 +28,14 @@ export default class App extends React.Component {
     return (
       <Provider store={this.store}>
         <div>
-          <section className='todoapp'>
+          <section>
             <Head>
-              <title>Todos</title>
+              <title>Chat</title>
               <meta name='viewport' content='initial-scale=1.0, width=device-width' />
               <link rel='stylesheet' href='/static/styles.css' />
             </Head>
-            <h1>todos</h1>
-            <AddTodoForm />
-            <Todos />
+            <Header />
+            <Messages />
             <Footer />
           </section>
           <p>Source code on <a href='https://github.com/lipp/next-todos'>GitHub</a></p>

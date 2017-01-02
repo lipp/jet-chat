@@ -1,0 +1,41 @@
+
+body {
+  font-family: Verdana, Helvetica;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header {
+  padding: 1em;
+  border-bottom: 1px solid lightgray;
+}
+
+input {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 0.8em;
+}
+
+ul {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+li {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 3px;
+  padding: 1em;
+  background: #f1f1f1;
+  width: 80%;
+}
+li.is-mine {
+  background: #333;
+  color: white;
+  margin-left: 20%;
+}
+li .author {
+  font-size: 0.8em;
+  font-weight: bold;
+}
