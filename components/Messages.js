@@ -10,7 +10,7 @@ class Messages extends React.Component {
     const messages = this.props.messages
     return (
       <ul>
-        {messages.map((message, index) => <li key={index} className={message.isMine ? 'is-mine' : ''}>
+        {messages.map(message => <li key={message.id} className={message.isMine ? 'is-mine' : ''}>
           <div className='author'>{message.author}</div>
           <div className='text'>{message.text}</div>
         </li>)}

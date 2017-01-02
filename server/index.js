@@ -7,8 +7,10 @@ const messages = []
 
 const addMessage = new jet.Method('message/add')
   .on('call', args => {
-    const message = new jet.State('message/#' + uuid.v1(), {
+    const id = uuid.v1()
+    const message = new jet.State('message/#' + id, {
       postedAt: Date.now(),
+      id,
       text: args[0],
       authorId: args[1],
       author: args[2]
