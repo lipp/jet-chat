@@ -27,18 +27,15 @@ export default class App extends React.Component {
   render () {
     return (
       <Provider store={this.store}>
-        <div>
-          <section>
-            <Head>
-              <title>Chat</title>
-              <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-              <link rel='stylesheet' href='/static/styles.css' />
-            </Head>
-            <Header />
-            <Messages />
-            <Footer />
-          </section>
-          <p>Source code on <a href='https://github.com/lipp/next-todos'>GitHub</a></p>
+        <div className='app'>
+          <Head>
+            <title>Chat</title>
+            <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+            <link rel='stylesheet' href='/static/styles.css' />
+          </Head>
+          <Header />
+          <Messages />
+          <Footer />
         </div>
       </Provider>
     )
