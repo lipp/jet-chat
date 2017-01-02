@@ -3,7 +3,7 @@ import React from 'react'
 const NameForm = ({clients, setName}) => (
   <form className='name-form' action='javascript:' onSubmit={({target: {name}}) => setName(name.value)} >
     <input type='text' autoComplete='off' name='name' placeholder='Enter your name' autoFocus required />
-    <button type='submit'>Join</button>
+    <button type='submit'>Start</button>
   </form>
 )
 
