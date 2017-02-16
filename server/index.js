@@ -1,5 +1,13 @@
 const jet = require('node-jet')
 const uuid = require('uuid')
+const jsonwebtoken = require('jsonwebtoken')
+const cookie = require('cookie')
+const tokenSecret = process.env.LW_JWT_SECRET
+
+if (!tokenSecret) {
+  console.error('no LW_JWT_SECRET')
+  process.exit(1)
+}
 
 const daemon = new jet.Daemon()
 const peer = new jet.Peer({url: 'ws://localhost:3001'})
@@ -29,6 +37,23 @@ Promise.all([
   console.log('chat server ready')
 })
 
+const isLocalhostRequest = req => (
+  req.connection.remoteAddress.indexOf('127.0.0.1') > -1
+)
+
+const hasValidJwt = req => {
+  const jwtCookie = cookie.parse(req.headers.cookie).jwt
+  return jsonwebtoken.verify(jwtCookie, tokenSecret)
+}
+
 daemon.listen({
-  wsPort: 3001
+  wsPort: 3001,
+  wsGetAuthentication: ({req}) => {
+    try {
+      if (isLocalhostRequest(req) || hasValidJwt(req)) {
+        return {}
+      }
+    } catch (err) {}
+    return false
+  }
 })

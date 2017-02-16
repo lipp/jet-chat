@@ -1,0 +1,10 @@
+{
+  "name": "jet-chat-api2",
+  "aliases": [
+    "jet-chat-api2.now.sh"
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "LW_JWT_SECRET": "@lw-token-secret"
+  }
+}
