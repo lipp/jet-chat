@@ -15,24 +15,22 @@ const messagesQuery = {
   sort: {byValueField: {postedAt: 'number'}, descending: true, from: 1, to: 30}
 }
 
-const meQuery = {
-  path: {equals: 'client/#'}
-}
-
 const reducer = initialState => combineReducers({
   clients: sorted('clients', initialState ? initialState.clients : []),
   messages: sorted('messages', initialState ? initialState.messages : []),
   me: single('me', {})
 })
 
-export default (initialState) => {
+export default (profile, initialState) => {
   const store = createStore(reducer(initialState), applyMiddleware(thunk))
 
   if (initialState) {
     store.resume = () => {
       const id = localStorage.id = localStorage.id || uuid.v1()
-      add(connection, 'client/#' + id, {joinedAt: Date.now(), id, name: localStorage.name})(store.dispatch)
-      meQuery.path.equals += id
+      add(connection, 'client/#' + id, {joinedAt: Date.now(), id, name: profile.name, photo: profile.photo})(store.dispatch)
+      const meQuery = {
+        path: { equals: 'client/#' + id }
+      }
       fetch(connection, meQuery, 'me')(store.dispatch)
       fetch(connection, clientsQuery, 'clients')(store.dispatch)
       fetch(connection, messagesQuery, 'messages')(store.dispatch)

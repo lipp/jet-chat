@@ -1,5 +1,15 @@
 import React from 'react'
 
+const Message = ({message}) => (
+  <li key={message.id} className={message.isMine ? 'is-mine' : ''}>
+    <div className='author'>
+      <img src={message.avatar} />
+      <span>{message.author}</span>
+    </div>
+    <div className='text'>{message.text}</div>
+  </li>
+)
+
 class Messages extends React.Component {
 
   componentDidUpdate () {
@@ -10,10 +20,7 @@ class Messages extends React.Component {
     const messages = this.props.messages
     return (
       <ul>
-        {messages.map(message => <li key={message.id} className={message.isMine ? 'is-mine' : ''}>
-          <div className='author'>{message.author}</div>
-          <div className='text'>{message.text}</div>
-        </li>)}
+        {messages.map(message => <Message key={message.id} message={message} />)}
       </ul>
     )
   }

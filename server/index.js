@@ -21,7 +21,8 @@ const addMessage = new jet.Method('message/add')
       id,
       text: args[0],
       authorId: args[1],
-      author: args[2]
+      author: args[2],
+      avatar: args[3]
     })
     peer.add(message)
     messages.push(message)

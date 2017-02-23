@@ -5,13 +5,14 @@ import initStore from '../store.js'
 import Header from '../containers/Header'
 import Messages from '../containers/Messages'
 import Footer from '../containers/Footer'
+import withProfile from '../with-profile'
 
-export default class App extends React.Component {
+class App extends React.Component {
 
-  static getInitialProps ({req}) {
+  static getInitialProps ({req, profile}) {
     if (req) {
-      const store = initStore()
-      return store.getInitialState().then(initialState => ({initialState, store}))
+      const store = initStore(profile)
+      return store.getInitialState().then(initialState => ({initialState, store, profile}))
     }
   }
 
@@ -21,7 +22,7 @@ export default class App extends React.Component {
 
   constructor (props) {
     super(props)
-    this.store = props.store.dispatch ? props.store : initStore(props.initialState)
+    this.store = props.store.dispatch ? props.store : initStore(props.profile, props.initialState)
   }
 
   render () {
@@ -41,3 +42,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default withProfile({Component: App, autoRedirect: true})

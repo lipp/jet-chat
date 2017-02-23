@@ -1,12 +1,5 @@
 import React from 'react'
 
-const NameForm = ({clients, setName}) => (
-  <form className='name-form' action='javascript:' onSubmit={({target: {name}}) => setName(name.value)} >
-    <input type='text' autoComplete='off' name='name' placeholder='Enter your name' autoFocus required />
-    <button type='submit'>Start</button>
-  </form>
-)
-
 const MessageForm = ({sendMessage}) => (
   <form className='message-form' action='javascript:' onSubmit={({target: {text}}) => {
     if (text.value) {
@@ -19,9 +12,8 @@ const MessageForm = ({sendMessage}) => (
   </form>
 )
 
-const Footer = ({sendMessage, setName, name, me}) => (
+const Footer = ({sendMessage}) => (
   <footer>
-    {me.id && !me.name ? <NameForm setName={setName} /> : null}
     <MessageForm sendMessage={sendMessage} />
   </footer>
 )
